@@ -1,0 +1,160 @@
+# Directory Explorer
+
+## 1. Introduction
+
+The **Directory Explorer** is a Node.js program that lists all files and folders inside a specified directory.
+
+Node.js provides a built-in **`fs` (File System)** module that allows applications to work with files and directories.
+
+In this assignment, the `fs.readdir()` method is used to read the contents of a directory.
+
+---
+
+## 2. What is the `fs` Module?
+
+The `fs` module stands for **File System**.
+
+It is a built-in Node.js module used to perform file and directory operations such as:
+
+- Reading files
+- Creating files
+- Updating files
+- Deleting files
+- Reading directory contents
+- Creating directories
+- Removing directories
+
+Since it is a built-in module, it does not need to be installed using npm.
+
+It can be imported using:
+
+```javascript
+const fs = require("fs");
+```
+
+---
+
+## 3. `fs.readdir()` Method
+
+The `fs.readdir()` method is used to read the contents of a directory.
+
+### Syntax
+
+```javascript
+fs.readdir(path, callback);
+```
+
+Where:
+
+- `path` is the directory path.
+- `callback` is executed after the directory is read.
+- `err` contains an error if the operation fails.
+- `files` contains the directory entries.
+
+---
+
+## 4. Program
+
+Create a file named **`directoryExplorer.js`**:
+
+```javascript
+const fs = require("fs");
+
+const directoryPath = ".";
+
+fs.readdir(directoryPath, (err, files) => {
+    if (err) {
+        console.error("Error reading directory:", err.message);
+        return;
+    }
+
+    console.log("Files and folders in the directory:");
+
+    files.forEach((file) => {
+        console.log(file);
+    });
+});
+```
+
+---
+
+## 5. Explanation of the Code
+
+### Importing the fs Module
+
+```javascript
+const fs = require("fs");
+```
+
+This imports Node.js's built-in File System module.
+
+### Setting Directory Path
+
+```javascript
+const directoryPath = ".";
+```
+
+The `.` represents the current directory.
+
+### Reading the Directory
+
+```javascript
+fs.readdir(directoryPath, (err, files) => {
+```
+
+This reads the contents of the specified directory.
+
+### Error Handling
+
+```javascript
+if (err) {
+    console.error("Error reading directory:", err.message);
+    return;
+}
+```
+
+If the directory cannot be accessed, an error message is displayed.
+
+### Displaying Files
+
+```javascript
+files.forEach((file) => {
+    console.log(file);
+});
+```
+
+The `forEach()` method loops through all directory entries and prints their names.
+
+---
+
+## 6. Example Output
+
+If the directory contains:
+
+```text
+directoryExplorer.js
+package.json
+README.md
+node_modules
+```
+
+The output will be:
+
+```text
+Files and folders in the directory:
+directoryExplorer.js
+package.json
+README.md
+node_modules
+```
+
+---
+
+## 7. Error Handling
+
+Error handling is important because the specified directory may not exist or the application may not have permission to access it.
+
+For example:
+
+```text
+Error reading directory:
