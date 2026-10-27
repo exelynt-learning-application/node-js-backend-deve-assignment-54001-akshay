@@ -1,0 +1,249 @@
+Here is the **ready-to-submit theory and code** for the **Async/Await Application** assignment.
+
+# Async/Await Application
+
+## 1. Introduction
+
+**Async/await** is a modern JavaScript feature used to work with asynchronous operations in a simple and readable way.
+
+It is commonly used in Node.js for operations such as:
+
+- Reading files
+- Calling APIs
+- Database operations
+- Timers
+- Network requests
+
+Async/await is built on top of **Promises** and makes asynchronous code easier to understand and maintain.
+
+---
+
+## 2. What is `async`?
+
+The `async` keyword is used before a function to indicate that the function performs asynchronous operations.
+
+An async function always returns a Promise.
+
+### Example
+
+```javascript
+async function greet() {
+    return "Hello World";
+}
+
+greet().then((message) => {
+    console.log(message);
+});
+```
+
+Output:
+
+```text
+Hello World
+```
+
+---
+
+## 3. What is `await`?
+
+The `await` keyword is used inside an async function to wait for a Promise to complete.
+
+It makes asynchronous code look similar to synchronous code.
+
+### Example
+
+```javascript
+async function getData() {
+    const result = await somePromise;
+    console.log(result);
+}
+```
+
+The `await` keyword waits for the Promise to resolve before continuing to the next statement.
+
+---
+
+# 4. Async/Await Application
+
+The following application performs multiple asynchronous operations using `async` and `await`.
+
+### File: `asyncAwaitApp.js`
+
+```javascript
+function getUser() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve({ id: 1, name: "Akshay" });
+        }, 1000);
+    });
+}
+
+function getOrders(userId) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(["Order 101", "Order 102", "Order 103"]);
+        }, 1000);
+    });
+}
+
+function getOrderDetails(order) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(`Details for ${order}`);
+        }, 1000);
+    });
+}
+
+async function main() {
+    try {
+        console.log("Starting application...");
+
+        const user = await getUser();
+        console.log("User:", user);
+
+        const orders = await getOrders(user.id);
+        console.log("Orders:", orders);
+
+        for (const order of orders) {
+            const details = await getOrderDetails(order);
+            console.log(details);
+        }
+
+        console.log("All operations completed successfully.");
+    } catch (error) {
+        console.error("Error:", error.message);
+    }
+}
+
+main();
+```
+
+---
+
+# 5. Explanation of the Application
+
+### Step 1: Get User
+
+```javascript
+const user = await getUser();
+```
+
+The application waits for the user information to be returned.
+
+### Step 2: Get Orders
+
+```javascript
+const orders = await getOrders(user.id);
+```
+
+After receiving the user, the application uses the user's ID to retrieve the orders.
+
+### Step 3: Get Order Details
+
+```javascript
+const details = await getOrderDetails(order);
+```
+
+The application retrieves details for each order asynchronously.
+
+### Step 4: Error Handling
+
+```javascript
+try {
+    // asynchronous operations
+} catch (error) {
+    console.error("Error:", error.message);
+}
+```
+
+The `try...catch` block handles errors that may occur during asynchronous operations.
+
+---
+
+# 6. Multiple Asynchronous Operations
+
+The application contains multiple asynchronous operations:
+
+1. Getting user information.
+2. Getting user orders.
+3. Getting details of each order.
+
+Each operation returns a Promise, and `await` is used to wait for the result.
+
+---
+
+# 7. Sequential vs Parallel Operations
+
+When operations depend on each other, they can be executed sequentially:
+
+```javascript
+const user = await getUser();
+const orders = await getOrders(user.id);
+```
+
+If operations are independent, they can be executed in parallel using `Promise.all()`:
+
+```javascript
+const results = await Promise.all([
+    getUser(),
+    getOrderDetails("Order 101")
+]);
+```
+
+This can improve performance when the operations do not depend on each other.
+
+---
+
+# 8. Error Handling
+
+Errors in asynchronous operations should be handled properly.
+
+Example:
+
+```javascript
+async function main() {
+    try {
+        const user = await getUser();
+        console.log(user);
+    } catch (error) {
+        console.error("Something went wrong:", error.message);
+    }
+}
+```
+
+Using `try...catch` prevents the application from terminating unexpectedly and allows meaningful error messages to be displayed.
+
+---
+
+# 9. Example Output
+
+```text
+Starting application...
+User: { id: 1, name: 'Akshay' }
+Orders: [ 'Order 101', 'Order 102', 'Order 103' ]
+Details for Order 101
+Details for Order 102
+Details for Order 103
+All operations completed successfully.
+```
+
+---
+
+# 10. Advantages of Async/Await
+
+- Makes asynchronous code easier to read.
+- Improves code readability.
+- Makes error handling easier with `try...catch`.
+- Reduces complicated Promise chaining.
+- Useful for API calls, file operations, and database operations.
+- Makes dependent asynchronous operations easier to manage.
+
+---
+
+# 11. Conclusion
+
+Async/await provides a clean and readable way to handle asynchronous operations in JavaScript and Node.js.
+
+In this application, multiple asynchronous operations are performed using Promises, `async`, and `await`. Error handling is implemented using `try...catch`.
+
+Therefore, async/await is an important feature for developing modern and maintainable Node.js applications.
