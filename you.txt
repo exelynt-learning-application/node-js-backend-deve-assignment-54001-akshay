@@ -1,0 +1,212 @@
+Sure. For the **File Manager CLI Application** assignment shown in the screenshot, you can use the following theory.
+
+# File Manager CLI Application – Theory
+
+## 1. Introduction
+
+A **File Manager CLI Application** is a command-line program developed using **Node.js** that allows users to manage text files through the terminal. The application can perform basic file operations such as **Create, Read, Update, Delete, and List** files.
+
+Node.js provides the built-in **File System (`fs`) module**, which contains functions for working with files and directories.
+
+The application accepts commands from the user and performs the requested file operation. It also handles errors and displays simple, user-friendly messages.
+
+## 2. Objectives
+
+The main objectives of this application are:
+
+- To understand file handling in Node.js.
+- To use the built-in `fs` module.
+- To perform CRUD operations on files.
+- To create, read, update, delete, and list text files.
+- To understand command-line application development.
+- To implement proper error handling.
+- To provide clear and user-friendly console messages.
+
+## 3. File System (`fs`) Module
+
+The `fs` module is a built-in Node.js module used to interact with the file system.
+
+It can be imported using:
+
+```javascript
+const fs = require('fs');
+```
+
+The `fs` module provides methods for creating, reading, updating, deleting, and managing files and directories.
+
+## 4. CRUD Operations
+
+CRUD stands for:
+
+- **C – Create:** Create a new file.
+- **R – Read:** Read the contents of an existing file.
+- **U – Update:** Modify the contents of a file.
+- **D – Delete:** Remove a file.
+
+### Create a File
+
+A file can be created using `fs.writeFile()`.
+
+Example:
+
+```javascript
+fs.writeFile('example.txt', 'Hello Node.js', (err) => {
+    if (err) {
+        console.log('Error creating file');
+    } else {
+        console.log('File created successfully');
+    }
+});
+```
+
+### Read a File
+
+The `fs.readFile()` method is used to read file contents.
+
+```javascript
+fs.readFile('example.txt', 'utf8', (err, data) => {
+    if (err) {
+        console.log('Error reading file');
+    } else {
+        console.log(data);
+    }
+});
+```
+
+### Update a File
+
+The contents of an existing file can be updated using `fs.writeFile()`.
+
+```javascript
+fs.writeFile('example.txt', 'Updated content', (err) => {
+    if (err) {
+        console.log('Error updating file');
+    } else {
+        console.log('File updated successfully');
+    }
+});
+```
+
+### Delete a File
+
+The `fs.unlink()` method is used to delete a file.
+
+```javascript
+fs.unlink('example.txt', (err) => {
+    if (err) {
+        console.log('Error deleting file');
+    } else {
+        console.log('File deleted successfully');
+    }
+});
+```
+
+### List Files
+
+The `fs.readdir()` method is used to list files inside a directory.
+
+```javascript
+fs.readdir('.', (err, files) => {
+    if (err) {
+        console.log('Error reading directory');
+    } else {
+        console.log(files);
+    }
+});
+```
+
+## 5. Command-Line Interface (CLI)
+
+A CLI allows users to interact with the application through the terminal instead of using a graphical interface.
+
+For example, a user can select operations such as:
+
+```text
+1. Create File
+2. Read File
+3. Update File
+4. Delete File
+5. List Files
+6. Exit
+```
+
+The application performs the selected operation based on the user's input.
+
+## 6. Error Handling
+
+Error handling is important because file operations can fail for different reasons. For example:
+
+- File does not exist.
+- File cannot be accessed.
+- Invalid file name is provided.
+- Permission is denied.
+- Directory cannot be read.
+
+Node.js uses the `err` parameter in callback-based `fs` methods to detect errors.
+
+Example:
+
+```javascript
+if (err) {
+    console.log('File operation failed');
+    return;
+}
+```
+
+The application should display meaningful messages instead of crashing.
+
+## 7. Code Organization
+
+The application should be organized into separate functions for different operations.
+
+For example:
+
+```text
+createFile()
+readFile()
+updateFile()
+deleteFile()
+listFiles()
+```
+
+This makes the code easier to understand, maintain, and debug.
+
+A simple project structure can be:
+
+```text
+file-manager/
+│
+├── app.js
+├── package.json
+└── files/
+    ├── file1.txt
+    └── file2.txt
+```
+
+## 8. CLI Usability
+
+A good CLI application should provide:
+
+- Clear menu options.
+- Simple commands.
+- Meaningful success messages.
+- Meaningful error messages.
+- Easy navigation.
+- An option to exit the application.
+
+For example:
+
+```text
+File created successfully.
+File read successfully.
+File updated successfully.
+File deleted successfully.
+```
+
+## 9. Conclusion
+
+The **File Manager CLI Application** demonstrates how Node.js can be used to interact with the file system. By using the `fs` module, the application can perform important file operations such as creating, reading, updating, deleting, and listing files.
+
+This project helps in understanding **Node.js file handling, CRUD operations, CLI development, error handling, and code organization**. It also provides practical experience in building a simple command-line utility.
+
+This theory covers the main points from your evaluation criteria: **CRUD Operations, Error Handling, Code Organization, CLI Usability, and Documentation**.
