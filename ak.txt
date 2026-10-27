@@ -1,0 +1,223 @@
+# Create Your First npm Project
+
+## 1. Introduction
+
+**npm** stands for **Node Package Manager**. It is the default package manager for Node.js and is used to manage packages, dependencies, project configuration, and scripts.
+
+An npm project usually contains a `package.json` file that stores important information about the project.
+
+---
+
+## 2. Creating a Node.js Project
+
+First, create a project folder and open it in the terminal.
+
+```bash
+mkdir my-npm-project
+cd my-npm-project
+```
+
+Initialize the npm project using:
+
+```bash
+npm init
+```
+
+npm asks several questions such as project name, version, description, entry point, and author.
+
+A `package.json` file is then created.
+
+You can also initialize the project quickly using:
+
+```bash
+npm init -y
+```
+
+The `-y` option accepts the default values automatically.
+
+---
+
+## 3. package.json
+
+The `package.json` file contains project configuration and dependency information.
+
+Example:
+
+```json
+{
+  "name": "my-npm-project",
+  "version": "1.0.0",
+  "description": "My first npm project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Student",
+  "license": "ISC"
+}
+```
+
+Important fields include:
+
+- **name** – Name of the project.
+- **version** – Current version of the project.
+- **description** – Short description of the project.
+- **main** – Main entry JavaScript file.
+- **scripts** – Commands that can be executed using npm.
+- **author** – Project author.
+- **license** – License information.
+- **dependencies** – Packages required by the application.
+- **devDependencies** – Packages required mainly for development and testing.
+
+---
+
+## 4. Creating the Project File
+
+Create an `index.js` file:
+
+```javascript
+console.log("Hello, npm!");
+```
+
+The project structure can look like:
+
+```text
+my-npm-project/
+│
+├── index.js
+├── package.json
+└── node_modules/
+```
+
+The `node_modules` folder is created when packages are installed.
+
+---
+
+## 5. Configuring npm Scripts
+
+Scripts allow us to define reusable commands inside `package.json`.
+
+Example:
+
+```json
+"scripts": {
+  "start": "node index.js",
+  "test": "echo \"Test completed\""
+}
+```
+
+The `start` script runs the `index.js` file.
+
+Run it using:
+
+```bash
+npm start
+```
+
+The output will be:
+
+```text
+Hello, npm!
+```
+
+The test script can be executed using:
+
+```bash
+npm test
+```
+
+---
+
+## 6. Installing npm Packages
+
+npm can be used to install external packages.
+
+For example:
+
+```bash
+npm install lodash
+```
+
+After installation, npm adds the package to the project's dependencies.
+
+The `package.json` file will contain something similar to:
+
+```json
+"dependencies": {
+  "lodash": "^4.17.21"
+}
+```
+
+npm also creates or updates the `package-lock.json` file.
+
+---
+
+## 7. Folder Organization
+
+A simple npm project should have a clear folder structure.
+
+Example:
+
+```text
+my-npm-project/
+│
+├── src/
+│   └── index.js
+│
+├── package.json
+├── package-lock.json
+└── README.md
+```
+
+### src
+
+Contains the main source code of the application.
+
+### package.json
+
+Contains project configuration, scripts, and dependencies.
+
+### package-lock.json
+
+Records the exact dependency versions installed for the project.
+
+### README.md
+
+Contains documentation and instructions about the project.
+
+---
+
+## 8. Common npm Commands
+
+| Command | Purpose |
+|---|---|
+| `npm init` | Creates a new npm project |
+| `npm init -y` | Creates a project using default values |
+| `npm install` | Installs project dependencies |
+| `npm install package-name` | Installs a specific package |
+| `npm uninstall package-name` | Removes a package |
+| `npm start` | Runs the start script |
+| `npm test` | Runs the test script |
+| `npm run script-name` | Runs a custom npm script |
+
+---
+
+## 9. Advantages of npm
+
+- Easy project initialization.
+- Simple dependency management.
+- Provides thousands of reusable packages.
+- Allows developers to create custom scripts.
+- Makes project setup easier.
+- Maintains dependency information in `package.json`.
+- Helps maintain consistent project dependencies.
+
+---
+
+## 10. Conclusion
+
+npm is an important part of Node.js development. Using `npm init`, developers can create a project and generate a `package.json` file. The file contains project information, scripts, and dependencies.
+
+npm scripts make it easy to run common commands, while proper folder organization makes the project easier to understand and maintain.
+
+Therefore, creating a basic npm project is an important first step in learning Node.js development.
