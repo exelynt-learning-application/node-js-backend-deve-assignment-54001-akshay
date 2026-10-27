@@ -1,0 +1,54 @@
+Sure. For the **JSON API** assignment, you can submit the following theory:
+
+### JSON API – Theory
+
+**Introduction:**  
+A JSON API is an application programming interface that allows applications to exchange data using **JSON (JavaScript Object Notation)** format. JSON is lightweight, easy to read, and commonly used for communication between a client and a server.
+
+**How a JSON API works:**
+1. The client sends a request to an API endpoint.
+2. The server processes the request.
+3. The server retrieves or prepares the required data.
+4. The server sends a JSON response to the client.
+5. The client reads and displays the received data.
+
+**Example JSON Response:**
+```json
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Akshay",
+      "email": "akshay@example.com"
+    },
+    {
+      "id": 2,
+      "name": "Rahul",
+      "email": "rahul@example.com"
+    }
+  ]
+}
+```
+
+**API Endpoint Example:**
+```text
+GET /api/users
+```
+
+This endpoint returns a list of users in JSON format.
+
+**Common HTTP Methods:**
+- **GET** – Retrieve data
+- **POST** – Create new data
+- **PUT** – Update existing data
+- **DELETE** – Delete data
+
+**Advantages of JSON API:**
+- Lightweight and fast
+- Easy to understand
+- Easy to parse using JavaScript and Node.js
+- Supports communication between different applications
+- Commonly used in web and mobile applications
+
+**Conclusion:**  
+A JSON API provides a simple and standard way for clients and servers to exchange structured data. It is widely used in modern web applications, especially when building frontend-backend communication.
