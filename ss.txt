@@ -1,54 +1,287 @@
-Sure. For the **JSON API** assignment, you can submit the following theory:
+# Mini Web Server Project
 
-### JSON API – Theory
+## 1. Objective
 
-**Introduction:**  
-A JSON API is an application programming interface that allows applications to exchange data using **JSON (JavaScript Object Notation)** format. JSON is lightweight, easy to read, and commonly used for communication between a client and a server.
+The objective of this project is to create a small HTTP server using Node.js. The server supports multiple routes, returns JSON responses, handles invalid routes with a `404` status code, and uses proper HTTP status codes.
 
-**How a JSON API works:**
-1. The client sends a request to an API endpoint.
-2. The server processes the request.
-3. The server retrieves or prepares the required data.
-4. The server sends a JSON response to the client.
-5. The client reads and displays the received data.
+## 2. Project Structure
 
-**Example JSON Response:**
+```text
+mini-web-server/
+│
+├── server.js
+└── package.json
+```
+
+## 3. server.js
+
+```javascript
+const http = require("http");
+
+const PORT = 3000;
+
+const server = http.createServer((req, res) => {
+    res.setHeader("Content-Type", "application/json");
+
+    // Home route
+    if (req.method === "GET" && req.url === "/") {
+        res.statusCode = 200;
+
+        res.end(JSON.stringify({
+            message: "Welcome to the Mini Web Server"
+        }));
+    }
+
+    // About route
+    else if (req.method === "GET" && req.url === "/about") {
+        res.statusCode = 200;
+
+        res.end(JSON.stringify({
+            message: "This is the About page",
+            technology: "Node.js"
+        }));
+    }
+
+    // Users route
+    else if (req.method === "GET" && req.url === "/users") {
+        res.statusCode = 200;
+
+        res.end(JSON.stringify({
+            users: [
+                {
+                    id: 1,
+                    name: "Akshay"
+                },
+                {
+                    id: 2,
+                    name: "Rahul"
+                }
+            ]
+        }));
+    }
+
+    // Health check route
+    else if (req.method === "GET" && req.url === "/health") {
+        res.statusCode = 200;
+
+        res.end(JSON.stringify({
+            status: "OK"
+        }));
+    }
+
+    // Invalid route
+    else {
+        res.statusCode = 404;
+
+        res.end(JSON.stringify({
+            error: "Route not found"
+        }));
+    }
+});
+
+server.listen(PORT, () => {
+    console.log(`Server is running at http://localhost:${PORT}`);
+});
+```
+
+## 4. package.json
+
+Create a `package.json` file:
+
+```json
+{
+  "name": "mini-web-server",
+  "version": "1.0.0",
+  "description": "A simple Node.js HTTP server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
+```
+
+## 5. How to Run
+
+Open the terminal inside the project folder.
+
+Run:
+
+```bash
+npm start
+```
+
+You should see:
+
+```text
+Server is running at http://localhost:3000
+```
+
+You can also run:
+
+```bash
+node server.js
+```
+
+## 6. Test the Routes
+
+### Route 1: Home
+
+Open:
+
+```text
+http://localhost:3000/
+```
+
+Expected status:
+
+```text
+200 OK
+```
+
+Response:
+
+```json
+{
+  "message": "Welcome to the Mini Web Server"
+}
+```
+
+### Route 2: About
+
+Open:
+
+```text
+http://localhost:3000/about
+```
+
+Expected status:
+
+```text
+200 OK
+```
+
+Response:
+
+```json
+{
+  "message": "This is the About page",
+  "technology": "Node.js"
+}
+```
+
+### Route 3: Users
+
+Open:
+
+```text
+http://localhost:3000/users
+```
+
+Expected status:
+
+```text
+200 OK
+```
+
+Response:
+
 ```json
 {
   "users": [
     {
       "id": 1,
-      "name": "Akshay",
-      "email": "akshay@example.com"
+      "name": "Akshay"
     },
     {
       "id": 2,
-      "name": "Rahul",
-      "email": "rahul@example.com"
+      "name": "Rahul"
     }
   ]
 }
 ```
 
-**API Endpoint Example:**
+### Route 4: Health Check
+
+Open:
+
 ```text
-GET /api/users
+http://localhost:3000/health
 ```
 
-This endpoint returns a list of users in JSON format.
+Expected status:
 
-**Common HTTP Methods:**
-- **GET** – Retrieve data
-- **POST** – Create new data
-- **PUT** – Update existing data
-- **DELETE** – Delete data
+```text
+200 OK
+```
 
-**Advantages of JSON API:**
-- Lightweight and fast
-- Easy to understand
-- Easy to parse using JavaScript and Node.js
-- Supports communication between different applications
-- Commonly used in web and mobile applications
+Response:
 
-**Conclusion:**  
-A JSON API provides a simple and standard way for clients and servers to exchange structured data. It is widely used in modern web applications, especially when building frontend-backend communication.
+```json
+{
+  "status": "OK"
+}
+```
+
+### Invalid Route / 404
+
+Open:
+
+```text
+http://localhost:3000/test
+```
+
+Expected status:
+
+```text
+404 Not Found
+```
+
+Response:
+
+```json
+{
+  "error": "Route not found"
+}
+```
+
+## 7. HTTP Status Codes Used
+
+| Status Code | Meaning | Usage |
+|---|---|---|
+| 200 | OK | Successful requests |
+| 404 | Not Found | Invalid or unknown route |
+
+## 8. Evaluation Criteria
+
+### Functionality – 40%
+
+The server successfully starts and returns JSON responses for the defined routes.
+
+### Routing – 20%
+
+Multiple routes are implemented:
+
+- `/`
+- `/about`
+- `/users`
+- `/health`
+
+### Error Handling – 20%
+
+Unknown routes return:
+
+```text
+404 Not Found
+```
+
+with an appropriate JSON error message.
+
+### Code Quality – 20%
+
+The code uses clear route conditions, meaningful variable names, proper formatting, and comments.
+
+## 9. Conclusion
+
+The Mini Web Server successfully demonstrates how to create an HTTP server using Node.js without using an external framework. It supports multiple routes, JSON responses, proper HTTP status codes, and `404` error handling.
+
+This project provides a basic understanding of how Node.js can be used to build backend web servers and APIs.
